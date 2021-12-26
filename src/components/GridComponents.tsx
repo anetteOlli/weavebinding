@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { IconButton } from '@mui/material';
 
 export const StyledTable = styled.table`
   border-spacing: 0;
@@ -19,7 +20,7 @@ type cellProps = {
 };
 
 export const StyledCell = styled.td<cellProps>`
-  display: block;
+  display: td;
   max-width: 1rem;
   max-height: 1rem;
   width: 1rem;
@@ -28,4 +29,9 @@ export const StyledCell = styled.td<cellProps>`
   border: ${(props) => (props.hideBorder ? 'none' : '1px solid')};
   border-collapse: collapse;
   cursor: ${(props) => (props.clickable ? 'pointer' : 'auto')};
+`;
+
+export const StyledIconButton = styled(IconButton)`
+  height: 0.1rem;
+  width: 0.6rem;
 `;

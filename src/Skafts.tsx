@@ -1,27 +1,19 @@
-import { Button, IconButton } from '@mui/material';
+import { Button } from '@mui/material';
 import React, { useState, FC, useEffect } from 'react';
-import { StyledCell, StyledRow, StyledTable } from './components/GridComponents';
+import { StyledCell, StyledIconButton, StyledRow, StyledTable } from './components/GridComponents';
 import DeleteIcon from '@mui/icons-material/Delete';
 import clone from 'just-clone';
 import styled from '@emotion/styled';
 
-const StyledButtonTd = styled.td`
-  display: inline-block;
-  border-collapse: collapse;
-  border: none;
-  max-width: 1.5rem;
-  max-height: 1.5rem;
-  width: 1.5rem;
-  height: 1.5rem;
-`;
-
 interface SkaftsProps {
   renning: number;
+  skafts: number[][];
+  setSkafts: React.Dispatch<React.SetStateAction<number[][]>>;
 }
 
-const Skafts: FC<SkaftsProps> = ({ renning }) => {
+const Skafts: FC<SkaftsProps> = ({ renning, skafts, setSkafts }) => {
   //Starter med at man har ett skaft (det absolutte minimum)
-  const [skafts, setSkafts] = useState<number[][]>([[]]);
+
   const [dummyArray, setDummyArray] = useState(new Array(renning).fill(0));
 
   useEffect(() => {
@@ -52,7 +44,6 @@ const Skafts: FC<SkaftsProps> = ({ renning }) => {
 
   return (
     <>
-      <pre>{JSON.stringify(skafts)}</pre>
       <StyledTable>
         <tbody>
           {skafts.map((skaftRow, skaftRowIndex) => (
@@ -67,11 +58,11 @@ const Skafts: FC<SkaftsProps> = ({ renning }) => {
                   clickable={true}
                 />
               ))}
-              <StyledButtonTd key={skaftRowIndex}>
-                <IconButton size="small" onClick={() => deleteSkaft(skaftRowIndex)} color="secondary">
+              <td key={skaftRowIndex}>
+                <StyledIconButton size="small" onClick={() => deleteSkaft(skaftRowIndex)} color="secondary">
                   <DeleteIcon />
-                </IconButton>
-              </StyledButtonTd>
+                </StyledIconButton>
+              </td>
             </StyledRow>
           ))}
         </tbody>
