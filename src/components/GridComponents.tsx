@@ -7,6 +7,11 @@ export const StyledTable = styled.table`
   white-space: nowrap;
 `;
 
+export const StyledRow = styled.tr`
+  max-height: 1rem;
+  max-widht: 1rem;
+`;
+
 type cellProps = {
   backgroundcolor: string;
   hideBorder?: boolean;
@@ -14,6 +19,9 @@ type cellProps = {
 };
 
 export const StyledCell = styled.td<cellProps>`
+  display: block;
+  max-width: 1rem;
+  max-height: 1rem;
   width: 1rem;
   height: 1rem;
   background-color: ${(props) => props.backgroundcolor};

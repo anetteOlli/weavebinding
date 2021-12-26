@@ -1,8 +1,19 @@
 import { Button, IconButton } from '@mui/material';
 import React, { useState, FC, useEffect } from 'react';
-import { StyledCell, StyledTable } from './components/GridComponents';
+import { StyledCell, StyledRow, StyledTable } from './components/GridComponents';
 import DeleteIcon from '@mui/icons-material/Delete';
 import clone from 'just-clone';
+import styled from '@emotion/styled';
+
+const StyledButtonTd = styled.td`
+  display: inline-block;
+  border-collapse: collapse;
+  border: none;
+  max-width: 1.5rem;
+  max-height: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+`;
 
 interface SkaftsProps {
   renning: number;
@@ -45,7 +56,7 @@ const Skafts: FC<SkaftsProps> = ({ renning }) => {
       <StyledTable>
         <tbody>
           {skafts.map((skaftRow, skaftRowIndex) => (
-            <tr key={skaftRowIndex}>
+            <StyledRow key={skaftRowIndex}>
               {dummyArray.map((_dummyElement, dummyIndex) => (
                 <StyledCell
                   key={(skaftRowIndex + 1) * (dummyIndex + 1)}
@@ -56,12 +67,12 @@ const Skafts: FC<SkaftsProps> = ({ renning }) => {
                   clickable={true}
                 />
               ))}
-              <td key={skaftRowIndex}>
+              <StyledButtonTd key={skaftRowIndex}>
                 <IconButton size="small" onClick={() => deleteSkaft(skaftRowIndex)} color="secondary">
                   <DeleteIcon />
                 </IconButton>
-              </td>
-            </tr>
+              </StyledButtonTd>
+            </StyledRow>
           ))}
         </tbody>
       </StyledTable>
